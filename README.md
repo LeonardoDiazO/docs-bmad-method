@@ -14,16 +14,19 @@
 1. [¿Qué es BMAD?](#-qué-es-bmad)
 2. [Los 6 Agentes](#-los-6-agentes)
 3. [Flujo Completo](#-flujo-completo)
-4. [Fase 1 — Antes de Desarrollar](#-fase-1--antes-de-desarrollar)
-5. [Fase 2 — Durante el Desarrollo](#-fase-2--durante-el-desarrollo)
-6. [Fase 3 — Validación y Cierre](#-fase-3--validación-y-cierre)
-7. [Resolución de Errores en Producción](#-resolución-de-errores-en-producción)
-8. [Gestión de Sesiones y Contexto](#-gestión-de-sesiones-y-contexto)
-9. [Integración con Herramientas](#-integración-con-herramientas)
-10. [Ejemplos Reales](#-ejemplos-reales)
-11. [Checklists Go / No-Go](#-checklists-go--no-go)
-12. [Errores Comunes](#-errores-comunes)
-13. [Plantillas](#-plantillas)
+4. [Elige tu Ruta](#-elige-tu-ruta)
+5. [Ruta A — Instalación Oficial](#-ruta-a--instalación-oficial-recomendada)
+6. [Ruta B — Sin Instalación (Manual)](#-ruta-b--sin-instalación-manual)
+7. [Fase 1 — Antes de Desarrollar](#-fase-1--antes-de-desarrollar)
+8. [Fase 2 — Durante el Desarrollo](#-fase-2--durante-el-desarrollo)
+9. [Fase 3 — Validación y Cierre](#-fase-3--validación-y-cierre)
+10. [Resolución de Errores en Producción](#-resolución-de-errores-en-producción)
+11. [Gestión de Sesiones y Contexto](#-gestión-de-sesiones-y-contexto)
+12. [Integración con Herramientas](#-integración-con-herramientas)
+13. [Ejemplos Reales](#-ejemplos-reales)
+14. [Checklists Go / No-Go](#-checklists-go--no-go)
+15. [Errores Comunes](#-errores-comunes)
+16. [Plantillas](#-plantillas)
 
 ---
 
@@ -46,7 +49,7 @@ BMAD es un método de trabajo con IA que simula un **equipo de desarrollo comple
 ## 👥 Los 6 Agentes
 
 | # | Agente | Alias | Responsabilidad Core | Entregable |
-|---|--------|-------|----------------------|------------|
+| - | ------ | ----- | -------------------- | ---------- |
 | 1 | 🔍 **Analyst** | BA | Entiende el problema real, restricciones y riesgos | Documento de Análisis |
 | 2 | 📋 **PM** | PM | Convierte el análisis en plan de producto priorizado | PRD |
 | 3 | 🏗️ **Architect** | ARCH | Diseña la solución técnica y el stack | Documento de Arquitectura |
@@ -89,6 +92,101 @@ BMAD es un método de trabajo con IA que simula un **equipo de desarrollo comple
 │  🧪 QA Final ──▶ ✅ Certificación ──▶ 🚀 Deploy ──▶ Monitoreo  │
 └─────────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 🔀 Elige tu Ruta
+
+Antes de continuar, elige cómo quieres usar BMAD:
+
+| | Ruta A — Oficial | Ruta B — Manual |
+| - | ---------------- | --------------- |
+| **Requisito** | Node.js v20+ | Solo un chat de IA |
+| **Setup** | `npx bmad-method install` | Ninguno |
+| **Agentes** | Predefinidos, se invocan con un comando | Prompts que copias y pegas |
+| **IDE** | Claude Code, Cursor, VS Code, y más | Cualquier interfaz de IA |
+| **Recomendado para** | Proyectos reales, equipos, uso continuo | Explorar el método, sin IDE configurado |
+
+> Si tienes Node.js y un IDE compatible → **Ruta A**.
+> Si solo tienes acceso a un chat de IA → **Ruta B**.
+
+---
+
+## 🚀 Ruta A — Instalación Oficial (Recomendada)
+
+> El instalador configura todos los agentes por defecto directamente en tu IDE. No necesitas copiar prompts.
+
+**Repositorio oficial:** [github.com/bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD)
+**Comunidad:** [Discord](https://discord.gg/gk8jAdXWmj)
+
+### Prerequisitos
+
+- Node.js v20+
+
+### Instalación en un comando
+
+```bash
+npx bmad-method install
+```
+
+El instalador te guía para:
+
+1. Elegir el directorio del proyecto
+2. Seleccionar tu IDE (Claude Code, Cursor, VS Code, Windsurf, GitHub Copilot, y más)
+3. Activar los módulos que necesitas
+
+### Módulo principal: BMad Method (`bmm`)
+
+Al instalar el módulo `bmm` obtienes los siguientes agentes predefinidos listos para usar:
+
+| Agente | Comando en IDE |
+| ------ | -------------- |
+| 🔍 Business Analyst | `/bmad-agent-bmm-analyst` |
+| 📋 Product Manager | `/bmad-agent-bmm-pm` |
+| 🏗️ Architect | `/bmad-agent-bmm-architect` |
+| 💻 Developer | `/bmad-agent-bmm-developer` |
+| 🧪 QA Engineer | `/bmad-agent-bmm-qa` |
+| 🎯 Orchestrator | `/bmad-agent-bmm-orchestrator` |
+| 🧠 BMad Master | `/bmad-agent-bmm-bmad-master` |
+
+### Estructura generada por el instalador
+
+```
+proyecto/
+├── _bmad/
+│   ├── core/          ← Agentes y tareas core
+│   ├── bmm/
+│   │   ├── agents/    ← Definiciones de agentes
+│   │   ├── workflows/ ← Flujos de trabajo
+│   │   └── tasks/     ← Tareas reutilizables
+│   └── _config/       ← Configuración del proyecto
+└── _bmad-output/      ← Artefactos generados (PRD, arquitectura, etc.)
+```
+
+### Verificar instalación
+
+Dentro de tu IDE, ejecuta:
+
+```
+/bmad-help
+```
+
+Esto lista todos los agentes disponibles y sus comandos.
+
+### Versiones alternativas
+
+```bash
+npx bmad-method@stable install   # Versión estable
+npx bmad-method@next install     # Prerelease / bleeding-edge
+```
+
+---
+
+## 📋 Ruta B — Sin Instalación (Manual)
+
+> Si no puedes instalar el método oficial, puedes aplicar BMAD copiando los prompts de cada agente directamente en cualquier chat de IA (ChatGPT, Claude, Gemini, etc.).
+>
+> El flujo, los roles y los entregables son exactamente los mismos — solo cambia cómo activas cada agente.
 
 ---
 
@@ -291,50 +389,6 @@ Continuamos con:
 
 ---
 
-## Agente 6: 🎯 Orchestrator (Transversal)
-
-**Cuándo activarlo:** Ante cualquier bloqueo, conflicto entre agentes o desviación del objetivo.
-
-### Prompt de Desbloqueo
-
-```
-Actúa como el Orchestrator del método BMAD.
-
-OBJETIVO ORIGINAL DEL PROYECTO:
-[OBJETIVO DEL PRD]
-
-ESTADO ACTUAL:
-- Analyst definió: [resumen en 2 líneas]
-- PM planificó: [resumen en 2 líneas]
-- Architect diseñó: [resumen en 2 líneas]
-- Developer reporta: [resumen en 2 líneas]
-
-BLOQUEO ACTUAL:
-[DESCRIBE EL PROBLEMA ESPECÍFICO]
-
-Determina:
-1. ¿Qué agente debe intervenir?
-2. ¿Qué debe hacer exactamente?
-3. ¿Esta situación requiere revisitar una fase anterior?
-4. ¿El objetivo original sigue siendo válido o debe ajustarse?
-```
-
-### Prompt de Alineamiento Semanal
-
-```
-Actúa como Orchestrator BMAD en revisión de alineamiento.
-
-Revisa si el proyecto sigue alineado:
-
-Objetivo original: [OBJETIVO]
-Lo que se está construyendo hoy: [DESCRIPCIÓN ACTUAL]
-
-¿Hay desviación? ¿Qué decisiones se tomaron que no estaban en el plan?
-¿Qué agente debe ser convocado para corregir el rumbo?
-```
-
----
-
 # ✅ FASE 3 — Validación y Cierre
 
 ---
@@ -388,6 +442,50 @@ Certifica que:
 
 Estado: APROBADO / RECHAZADO
 Motivo: [si es rechazado]
+```
+
+---
+
+## Agente 6: 🎯 Orchestrator (Transversal)
+
+**Cuándo activarlo:** Ante cualquier bloqueo, conflicto entre agentes o desviación del objetivo.
+
+### Prompt de Desbloqueo
+
+```
+Actúa como el Orchestrator del método BMAD.
+
+OBJETIVO ORIGINAL DEL PROYECTO:
+[OBJETIVO DEL PRD]
+
+ESTADO ACTUAL:
+- Analyst definió: [resumen en 2 líneas]
+- PM planificó: [resumen en 2 líneas]
+- Architect diseñó: [resumen en 2 líneas]
+- Developer reporta: [resumen en 2 líneas]
+
+BLOQUEO ACTUAL:
+[DESCRIBE EL PROBLEMA ESPECÍFICO]
+
+Determina:
+1. ¿Qué agente debe intervenir?
+2. ¿Qué debe hacer exactamente?
+3. ¿Esta situación requiere revisitar una fase anterior?
+4. ¿El objetivo original sigue siendo válido o debe ajustarse?
+```
+
+### Prompt de Alineamiento Semanal
+
+```
+Actúa como Orchestrator BMAD en revisión de alineamiento.
+
+Revisa si el proyecto sigue alineado:
+
+Objetivo original: [OBJETIVO]
+Lo que se está construyendo hoy: [DESCRIPCIÓN ACTUAL]
+
+¿Hay desviación? ¿Qué decisiones se tomaron que no estaban en el plan?
+¿Qué agente debe ser convocado para corregir el rumbo?
 ```
 
 ---
@@ -520,6 +618,8 @@ Continuamos con: [TAREA ESPECÍFICA]
 ---
 
 # 🛠️ Integración con Herramientas
+
+> **Nota:** Esta sección aplica únicamente a **Ruta B (Manual)**. Si usas **Ruta A**, tu IDE ya quedó configurado durante la instalación con `npx bmad-method install` — no necesitas hacer nada aquí.
 
 ## Cursor (Recomendado)
 
