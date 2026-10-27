@@ -1,904 +1,290 @@
-# 🧠 BMAD METHOD
-### Breakthrough Method of Agile AI-driven Development
-
-> Un framework de agentes de IA para desarrollar software de forma estructurada, trazable y reproducible — desde la idea hasta producción.
-
-[![BMAD Version](https://img.shields.io/badge/BMAD-v1.0-6366f1?style=flat-square)](.)
-[![Method](https://img.shields.io/badge/Method-Agile%20AI--driven-8b5cf6?style=flat-square)](.)
-[![Status](https://img.shields.io/badge/Status-Active-22c55e?style=flat-square)](.)
-
----
-
-## 📑 Tabla de Contenidos
-
-1. [¿Qué es BMAD?](#-qué-es-bmad)
-2. [Los 6 Agentes](#-los-6-agentes)
-3. [Flujo Completo](#-flujo-completo)
-4. [Elige tu Ruta](#-elige-tu-ruta)
-5. [Ruta A — Instalación Oficial](#-ruta-a--instalación-oficial-recomendada)
-6. [Ruta B — Sin Instalación (Manual)](#-ruta-b--sin-instalación-manual)
-7. [Fase 1 — Antes de Desarrollar](#-fase-1--antes-de-desarrollar)
-8. [Fase 2 — Durante el Desarrollo](#-fase-2--durante-el-desarrollo)
-9. [Fase 3 — Validación y Cierre](#-fase-3--validación-y-cierre)
-10. [Resolución de Errores en Producción](#-resolución-de-errores-en-producción)
-11. [Gestión de Sesiones y Contexto](#-gestión-de-sesiones-y-contexto)
-12. [Integración con Herramientas](#-integración-con-herramientas)
-13. [Ejemplos Reales](#-ejemplos-reales)
-14. [Checklists Go / No-Go](#-checklists-go--no-go)
-15. [Errores Comunes](#-errores-comunes)
-16. [Plantillas](#-plantillas)
-
----
-
-## 📌 ¿Qué es BMAD?
-
-BMAD es un método de trabajo con IA que simula un **equipo de desarrollo completo** mediante roles especializados llamados agentes. Cada agente tiene una responsabilidad única, entregables definidos y criterios claros para pasar al siguiente.
-
-### Principios Fundamentales
-
-| # | Principio | Descripción |
-|---|-----------|-------------|
-| 1 | **Análisis antes que código** | Nunca escribir código sin haber analizado, planificado y arquitectado |
-| 2 | **Entregables por agente** | Cada agente produce un output documentado antes de ceder el paso |
-| 3 | **Contexto persistente** | Todo output se guarda — ninguna sesión empieza desde cero |
-| 4 | **Separación de roles** | Un agente no invade el rol de otro |
-| 5 | **Orquestación continua** | El Orchestrator supervisa alineación en todo momento |
-
----
-
-## 👥 Los 6 Agentes
-
-| # | Agente | Alias | Responsabilidad Core | Entregable |
-| - | ------ | ----- | -------------------- | ---------- |
-| 1 | 🔍 **Analyst** | BA | Entiende el problema real, restricciones y riesgos | Documento de Análisis |
-| 2 | 📋 **PM** | PM | Convierte el análisis en plan de producto priorizado | PRD |
-| 3 | 🏗️ **Architect** | ARCH | Diseña la solución técnica y el stack | Documento de Arquitectura |
-| 4 | 💻 **Developer** | DEV | Implementa código basado en la arquitectura | Código + Documentación |
-| 5 | 🧪 **QA** | QA | Valida calidad, seguridad y criterios de aceptación | Reporte de QA |
-| 6 | 🎯 **Orchestrator** | ORCH | Coordina, desbloquea y mantiene alineamiento | Decisiones documentadas |
-
----
-
-## 🗺️ Flujo Completo
-
-```
-╔══════════════════════════════════════════════════════════════════╗
-║                    🎯 ORCHESTRATOR (Transversal)                 ║
-║              Supervisa alineamiento en todo momento              ║
-╚══════════════════════════════════════════════════════════════════╝
-         │                    │                    │
-         ▼                    ▼                    ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  FASE 1 — ANTES DE DESARROLLAR                                  │
-│                                                                 │
-│  🔍 Analyst ──▶ ✅ Go/No-Go ──▶ 📋 PM ──▶ ✅ Go/No-Go ──▶ 🏗️ Arch │
-│                                                                 │
-│  Output: Análisis        Output: PRD         Output: Arquitectura│
-└─────────────────────────────┬───────────────────────────────────┘
-                              │ ✅ Go/No-Go Fase 2
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  FASE 2 — DURANTE EL DESARROLLO                                 │
-│                                                                 │
-│  💻 Developer ──▶ [Feature] ──▶ 🧪 QA ──▶ ✅ Aprobado ──▶ Merge │
-│       ↑                              │                          │
-│       └──────── ❌ Issues ───────────┘                          │
-└─────────────────────────────┬───────────────────────────────────┘
-                              │ ✅ Go/No-Go Producción
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  FASE 3 — VALIDACIÓN Y CIERRE                                   │
-│                                                                 │
-│  🧪 QA Final ──▶ ✅ Certificación ──▶ 🚀 Deploy ──▶ Monitoreo  │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
+# Guía BMAD + Claude
 
-## 🔀 Elige tu Ruta
+> Generado por `npm run sync` el 26 de octubre de 2026. **Abre `index.html`** para la versión con buscador. Para cambiar textos edita `content/`, no este archivo.
 
-Antes de continuar, elige cómo quieres usar BMAD:
+BMAD instalado: **6.12.4** · publicado: **6.12.4** · Claude Code: **2.1.311** · Módulos: core 6.12.4, tea v1.27.2, bmm 6.12.4, cis v0.3.2
+
+## Cómo se usa BMAD dentro de Claude Code
 
-| | Ruta A — Oficial | Ruta B — Manual |
-| - | ---------------- | --------------- |
-| **Requisito** | Node.js v20+ | Solo un chat de IA |
-| **Setup** | `npx bmad-method install` | Ninguno |
-| **Agentes** | Predefinidos, se invocan con un comando | Prompts que copias y pegas |
-| **IDE** | Claude Code, Cursor, VS Code, y más | Cualquier interfaz de IA |
-| **Recomendado para** | Proyectos reales, equipos, uso continuo | Explorar el método, sin IDE configurado |
+BMAD es un conjunto de **skills**: instrucciones empaquetadas que Claude carga cuando las invocas. Se instalan por proyecto (`_bmad/` y `.claude/skills/`), así que cada repo tiene su propia versión. Para usar una, escríbela como comando en Claude Code (`/bmad-prd`) o pídela con palabras ("crea el PRD"); Claude la reconoce por su descripción.
 
-> Si tienes Node.js y un IDE compatible → **Ruta A**.
-> Si solo tienes acceso a un chat de IA → **Ruta B**.
+> **Si dudas, empieza por `/bmad-help`.** Lee qué documentos existen ya en el proyecto y te dice la siguiente skill. Las fichas de esta guía te dicen también qué viene antes y después de cada una.
 
----
-
-## 🚀 Ruta A — Instalación Oficial (Recomendada)
-
-> El instalador configura todos los agentes por defecto directamente en tu IDE. No necesitas copiar prompts.
-
-**Repositorio oficial:** [github.com/bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD)
-**Comunidad:** [Discord](https://discord.gg/gk8jAdXWmj)
-
-### Prerequisitos
-
-- Node.js v20+
-
-### Instalación en un comando
-
-```bash
-npx bmad-method install
-```
-
-El instalador te guía para:
-
-1. Elegir el directorio del proyecto
-2. Seleccionar tu IDE (Claude Code, Cursor, VS Code, Windsurf, GitHub Copilot, y más)
-3. Activar los módulos que necesitas
-
-### Módulo principal: BMad Method (`bmm`)
-
-Al instalar el módulo `bmm` obtienes los siguientes agentes predefinidos listos para usar:
-
-| Agente | Comando en IDE |
-| ------ | -------------- |
-| 🔍 Business Analyst | `/bmad-agent-bmm-analyst` |
-| 📋 Product Manager | `/bmad-agent-bmm-pm` |
-| 🏗️ Architect | `/bmad-agent-bmm-architect` |
-| 💻 Developer | `/bmad-agent-bmm-developer` |
-| 🧪 QA Engineer | `/bmad-agent-bmm-qa` |
-| 🎯 Orchestrator | `/bmad-agent-bmm-orchestrator` |
-| 🧠 BMad Master | `/bmad-agent-bmm-bmad-master` |
-
-### Estructura generada por el instalador
-
-```
-proyecto/
-├── _bmad/
-│   ├── core/          ← Agentes y tareas core
-│   ├── bmm/
-│   │   ├── agents/    ← Definiciones de agentes
-│   │   ├── workflows/ ← Flujos de trabajo
-│   │   └── tasks/     ← Tareas reutilizables
-│   └── _config/       ← Configuración del proyecto
-└── _bmad-output/      ← Artefactos generados (PRD, arquitectura, etc.)
-```
-
-### Verificar instalación
-
-Dentro de tu IDE, ejecuta:
-
-```
-/bmad-help
-```
-
-Esto lista todos los agentes disponibles y sus comandos.
-
-### Versiones alternativas
-
-```bash
-npx bmad-method@stable install   # Versión estable
-npx bmad-method@next install     # Prerelease / bleeding-edge
-```
-
----
-
-## 📋 Ruta B — Sin Instalación (Manual)
-
-> Si no puedes instalar el método oficial, puedes aplicar BMAD copiando los prompts de cada agente directamente en cualquier chat de IA (ChatGPT, Claude, Gemini, etc.).
->
-> El flujo, los roles y los entregables son exactamente los mismos — solo cambia cómo activas cada agente.
-
----
-
-# 📘 FASE 1 — Antes de Desarrollar
-
----
-
-## Agente 1: 🔍 Analyst
-
-**Cuándo activarlo:** Al inicio de cualquier proyecto o feature. Antes de cualquier línea de código.  
-**Cuándo NO usarlo:** Para tareas menores de mantenimiento ya analizadas.
-
-### Prompt Base
-
-```
-Actúa como el Agente Analyst del método BMAD.
-
-Tu único objetivo es entender el problema real antes de proponer soluciones.
-Haz todas las preguntas necesarias y documenta las respuestas.
-
-Analiza y responde:
-1. ¿Cuál es el problema real? (no el síntoma)
-2. ¿Quiénes son los usuarios y qué necesitan?
-3. ¿Qué restricciones existen? (presupuesto, tiempo, tecnología, equipo)
-4. ¿Qué ya se intentó y por qué falló?
-5. ¿Qué riesgos existen si no se resuelve?
-6. ¿Qué métricas confirmarán que el problema está resuelto?
-
-Contexto del proyecto:
-[DESCRIBE TU PROYECTO O PROBLEMA AQUÍ]
-
-Al finalizar, estructura tu output en el formato:
-- Problema real identificado:
-- Restricciones:
-- Riesgos:
-- Lo que ya se intentó:
-- Métricas de éxito:
-- Preguntas pendientes:
-```
-
-### Checklist de Entregable
-
-```
-[ ] Problema real documentado (no síntoma)
-[ ] Restricciones listadas con impacto
-[ ] Riesgos clasificados por probabilidad e impacto
-[ ] Usuarios identificados con sus necesidades
-[ ] Métricas de éxito definidas
-[ ] Preguntas abiertas resueltas o escaladas al PM
-```
-
----
-
-## Agente 2: 📋 PM (Product Manager)
-
-**Cuándo activarlo:** Con el output del Analyst aprobado.
-
-### Prompt Base
-
-```
-Actúa como el Agente PM del método BMAD.
-
-Basándote en el siguiente análisis del Analyst:
-[PEGA EL OUTPUT COMPLETO DEL ANALYST]
-
-Crea el PRD (Product Requirements Document) con:
-
-1. OBJETIVO: Una línea que describe qué resuelve y para quién
-2. USUARIOS: Perfil del usuario principal
-3. FEATURES:
-   - Must Have (sin esto no hay producto)
-   - Should Have (importante pero no bloqueante)
-   - Nice to Have (futuras versiones)
-4. CRITERIOS DE ACEPTACIÓN: Por cada Must Have, qué debe hacer exactamente
-5. OUT OF SCOPE: Lo que explícitamente NO se construirá
-6. DEFINITION OF DONE: Qué significa que el proyecto está terminado
-7. RIESGOS Y DEPENDENCIAS
-
-Sé específico. Evita ambigüedades. Si algo no está claro, señálalo.
-```
-
-### Checklist de Entregable
-
-```
-[ ] Objetivo en una sola línea claro y medible
-[ ] Features priorizadas con Must/Should/Nice
-[ ] Criterio de aceptación por cada Must Have
-[ ] Out of scope documentado explícitamente
-[ ] Definition of Done acordado
-[ ] Dependencias externas identificadas
-```
-
----
-
-## Agente 3: 🏗️ Architect
-
-**Cuándo activarlo:** Con el PRD aprobado por el equipo.
-
-### Prompt Base
-
-```
-Actúa como el Agente Architect del método BMAD.
-
-Basándote en este PRD:
-[PEGA EL PRD COMPLETO]
-
-Define la arquitectura técnica incluyendo:
-
-1. STACK TECNOLÓGICO: Cada tecnología con su justificación
-2. LO QUE NO USAREMOS: Tecnologías descartadas y por qué
-3. ESTRUCTURA DE CARPETAS: Árbol del proyecto
-4. FLUJO DE DATOS: Cómo viaja la información de A a Z
-5. SERVICIOS EXTERNOS: APIs, límites, costos, alternativas si fallan
-6. DECISIONES TÉCNICAS CLAVE: Con trade-offs documentados
-7. RIESGOS TÉCNICOS: Lo que podría fallar y el plan de contingencia
-8. GUÍA PARA EL DEVELOPER: Qué puede y qué no puede cambiar sin consultar
-
-Documenta CADA decisión con su razonamiento. El Developer no debe adivinar.
-```
-
-### Checklist de Entregable
-
-```
-[ ] Stack con justificación por tecnología
-[ ] Tecnologías descartadas documentadas con razón
-[ ] Estructura de carpetas definida
-[ ] Flujo de datos documentado
-[ ] Límites de servicios externos identificados
-[ ] Plan de contingencia para servicios críticos
-[ ] Reglas claras para el Developer
-```
-
----
-
-# 🔨 FASE 2 — Durante el Desarrollo
-
----
-
-## Agente 4: 💻 Developer
-
-**Cuándo activarlo:** Con arquitectura aprobada.  
-**Regla de oro:** Solo implementa lo que el Architect diseñó y el PM aprobó.
-
-### Prompt Base por Feature
-
-```
-Actúa como el Agente Developer del método BMAD.
-
-ARQUITECTURA DE REFERENCIA:
-[PEGA EL DOCUMENTO DE ARQUITECTURA]
-
-TAREA ACTUAL:
-Feature: [NOMBRE DE LA FEATURE]
-Criterio de aceptación: [DEL PRD]
-Restricciones: [DEL ANALYST]
-
-Implementa esta feature siguiendo:
-- Stack exacto definido por el Architect
-- Código limpio, comentado en puntos clave
-- Manejo de errores completo
-- Sin agregar dependencias no aprobadas
-
-Al finalizar, documenta:
-- Qué implementaste
-- Decisiones de implementación tomadas
-- Qué queda pendiente
-- Algo que el QA deba revisar con especial atención
-```
-
-### Reglas del Developer
-
-```
-✅ PUEDE hacer:
-   - Implementar features del PRD
-   - Pedir clarificación al Architect antes de asumir
-   - Documentar decisiones de implementación
-   - Señalar deuda técnica sin crearla
-
-❌ NO PUEDE hacer:
-   - Cambiar el stack sin aprobación del Architect
-   - Agregar features no aprobadas por el PM
-   - Hacer suposiciones arquitectónicas silenciosas
-   - Saltarse el QA porque "funciona en local"
-```
-
-### Prompt para Gestión de Contexto entre Sesiones
-
-```
-Actúa como el Agente Developer del método BMAD.
-
-RESUMEN DEL PROYECTO (contexto acumulado):
-[PEGA EL ESTADO ACTUAL DEL BMAD SESSION DOC]
-
-Última sesión terminamos en:
-[QUÉ SE HIZO LAST SESSION]
-
-Continuamos con:
-[PRÓXIMA TAREA]
-```
-
----
-
-# ✅ FASE 3 — Validación y Cierre
-
----
-
-## Agente 5: 🧪 QA
-
-**Cuándo activarlo:** Al completar cada feature y antes de cualquier deploy a producción.
-
-### Prompt de Revisión de Feature
-
-```
-Actúa como el Agente QA del método BMAD.
-
-CÓDIGO / FEATURE A REVISAR:
-[PEGA EL CÓDIGO O DESCRIBE LA FEATURE]
-
-CRITERIOS DE ACEPTACIÓN (del PRD):
-[PEGA LOS CRITERIOS]
-
-ARQUITECTURA DE REFERENCIA:
-[PEGA PUNTOS CLAVE DE ARQUITECTURA]
-
-Busca y reporta con severidad (Critical / High / Medium / Low):
-1. Bugs o errores lógicos
-2. Edge cases no manejados
-3. Problemas de performance
-4. Vulnerabilidades de seguridad
-5. Código fuera de la arquitectura definida
-6. Falta de manejo de errores
-7. Criterios de aceptación no cumplidos
-
-Formato de reporte:
-- [SEVERIDAD] Descripción del issue
-- Ubicación: archivo/función
-- Impacto: qué puede fallar
-- Sugerencia de fix
-```
-
-### Prompt de Certificación Final (Pre-Deploy)
-
-```
-Actúa como QA BMAD en revisión final pre-producción.
-
-Certifica que:
-[ ] Todos los Must Have del PRD están implementados
-[ ] No hay issues Critical o High sin resolver
-[ ] El flujo completo fue probado end-to-end
-[ ] Los servicios externos fueron probados con sus límites reales
-[ ] El manejo de errores cubre los casos documentados por el Analyst
-[ ] La arquitectura del Architect fue respetada
-
-Estado: APROBADO / RECHAZADO
-Motivo: [si es rechazado]
-```
-
----
-
-## Agente 6: 🎯 Orchestrator (Transversal)
-
-**Cuándo activarlo:** Ante cualquier bloqueo, conflicto entre agentes o desviación del objetivo.
-
-### Prompt de Desbloqueo
-
-```
-Actúa como el Orchestrator del método BMAD.
-
-OBJETIVO ORIGINAL DEL PROYECTO:
-[OBJETIVO DEL PRD]
-
-ESTADO ACTUAL:
-- Analyst definió: [resumen en 2 líneas]
-- PM planificó: [resumen en 2 líneas]
-- Architect diseñó: [resumen en 2 líneas]
-- Developer reporta: [resumen en 2 líneas]
-
-BLOQUEO ACTUAL:
-[DESCRIBE EL PROBLEMA ESPECÍFICO]
-
-Determina:
-1. ¿Qué agente debe intervenir?
-2. ¿Qué debe hacer exactamente?
-3. ¿Esta situación requiere revisitar una fase anterior?
-4. ¿El objetivo original sigue siendo válido o debe ajustarse?
-```
-
-### Prompt de Alineamiento Semanal
-
-```
-Actúa como Orchestrator BMAD en revisión de alineamiento.
-
-Revisa si el proyecto sigue alineado:
-
-Objetivo original: [OBJETIVO]
-Lo que se está construyendo hoy: [DESCRIPCIÓN ACTUAL]
-
-¿Hay desviación? ¿Qué decisiones se tomaron que no estaban en el plan?
-¿Qué agente debe ser convocado para corregir el rumbo?
-```
-
----
-
-# 🚨 Resolución de Errores en Producción
-
-```
-ERROR DETECTADO EN PRODUCCIÓN
-           │
-           ▼
-┌──────────────────────┐
-│   🔍 Analyst         │
-│   Modo: Debug        │──▶ ¿Cuál es el error real?
-│                      │──▶ ¿Cuándo ocurre exactamente?
-│                      │──▶ ¿Cuántos usuarios afecta?
-└──────────┬───────────┘
-           │
-           ▼  ¿Es un problema de arquitectura?
-┌──────────────────────┐
-│   🏗️ Architect       │──▶ ¿Qué decisión técnica lo causó?
-│   Modo: Root Cause   │──▶ ¿La fix rompe algo más?
-│                      │──▶ ¿Requiere cambio de arquitectura?
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│   💻 Developer       │──▶ Implementa el fix
-│   Modo: Hotfix       │──▶ Sin introducir deuda técnica nueva
-│                      │──▶ Documenta el cambio en el BMAD Session Doc
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│   🧪 QA              │──▶ Verifica que el fix resuelve el error
-│   Modo: Regresión    │──▶ Verifica que nada más se rompió
-│                      │──▶ Aprueba para producción
-└──────────────────────┘
-```
-
-### Prompt de Debug
-
-```
-Actúa como el Agente Analyst BMAD en modo Debug.
-
-ERROR EN PRODUCCIÓN:
-Mensaje: [ERROR COMPLETO CON STACK TRACE]
-Cuándo ocurre: [PASOS PARA REPRODUCIR]
-Frecuencia: [SIEMPRE / A VECES / BAJO CIERTAS CONDICIONES]
-Impacto: [USUARIOS AFECTADOS / FUNCIONES BLOQUEADAS]
-Stack tecnológico: [TU STACK]
-Lo que ya intentamos: [INTENTOS PREVIOS]
-
-Entrega:
-1. Causa raíz probable (no el síntoma)
-2. Severidad: Critical / High / Medium / Low
-3. Agente que debe resolver y con qué prompt
-4. ¿Requiere revisión del Architect antes del fix?
-```
-
----
-
-# 💾 Gestión de Sesiones y Contexto
-
-Una de las limitaciones de trabajar con IA es que **cada conversación empieza desde cero**. BMAD resuelve esto con el **BMAD Session Document**.
-
-## El BMAD Session Document
-
-Crea un archivo `BMAD-SESSION.md` en la raíz de tu repositorio y actualízalo al final de cada sesión.
-
-### Estructura del BMAD Session Document
-
-```markdown
-# BMAD SESSION — [NOMBRE DEL PROYECTO]
-Última actualización: [FECHA Y HORA]
-
-## 🎯 Objetivo del Proyecto
-[Una línea del PRD]
-
-## 📊 Estado Actual
-- Fase: [FASE 1 / FASE 2 / FASE 3 / PRODUCCIÓN]
-- Agente activo: [AGENTE ACTUAL]
-- Progreso: [X% completado]
-
-## ✅ Output del Analyst
-[PEGA EL OUTPUT COMPLETO]
-
-## ✅ Output del PM (PRD)
-[PEGA EL PRD COMPLETO]
-
-## ✅ Output del Architect
-[PEGA LA ARQUITECTURA COMPLETA]
-
-## 🔄 Log del Developer
-### Sesión [FECHA]
-- Feature trabajada: 
-- Completado:
-- Pendiente:
-- Decisiones tomadas:
-- Notas para QA:
-
-## 🧪 Reportes QA
-### Reporte [FECHA]
-- Feature revisada:
-- Issues encontrados:
-- Estado: APROBADO / RECHAZADO
-
-## 🚨 Bugs en Producción
-### Bug [FECHA]
-- Error:
-- Causa raíz:
-- Fix aplicado:
-- QA aprobó:
-
-## 📌 Decisiones del Orchestrator
-[LISTA DE DECISIONES CON FECHA Y RAZÓN]
-```
-
-### Cómo cargar contexto al inicio de cada sesión
-
-```
-Actúa como el Agente [AGENTE QUE NECESITAS] del método BMAD.
-
-Lee el siguiente BMAD Session Document y continúa desde donde nos quedamos:
-
-[PEGA EL CONTENIDO DE BMAD-SESSION.md]
-
-Continuamos con: [TAREA ESPECÍFICA]
-```
-
----
-
-# 🛠️ Integración con Herramientas
-
-> **Nota:** Esta sección aplica únicamente a **Ruta B (Manual)**. Si usas **Ruta A**, tu IDE ya quedó configurado durante la instalación con `npx bmad-method install` — no necesitas hacer nada aquí.
-
-## Cursor (Recomendado)
-
-Crea el archivo `.cursor/rules/bmad.mdc` en tu proyecto:
-
-```markdown
----
-description: Reglas BMAD para este proyecto
-globs: **/*
----
-
-# BMAD Rules
-
-Siempre actúa respetando el método BMAD.
-Antes de escribir código, verifica que existe un documento de arquitectura.
-No agregues dependencias no listadas en la arquitectura.
-Ante cualquier duda, actúa como Orchestrator y señala qué agente debe intervenir.
-
-Stack aprobado para este proyecto: [TU STACK]
-Arquitectura en: BMAD-SESSION.md
-```
-
-## VS Code
-
-Instala la extensión **Continue** y configura el contexto:
-
-```json
-// .continue/config.json
-{
-  "systemMessage": "Actúa bajo el método BMAD. El contexto del proyecto está en BMAD-SESSION.md. Nunca sugieras tecnologías fuera del stack aprobado por el Architect.",
-  "contextProviders": [
-    { "name": "file", "params": { "nFiles": 1 } }
-  ]
-}
-```
-
-## GitHub — PR Template
-
-Crea `.github/pull_request_template.md`:
-
-```markdown
-## BMAD Checklist — Pull Request
-
-### Developer
-- [ ] Feature implementada según arquitectura del Architect
-- [ ] Sin dependencias no aprobadas
-- [ ] Manejo de errores completo
-- [ ] BMAD-SESSION.md actualizado
-
-### QA
-- [ ] Criterios de aceptación cumplidos
-- [ ] Edge cases probados
-- [ ] No hay issues Critical o High abiertos
-
-### Referencia
-- Feature del PRD: [NOMBRE]
-- Architect aprobó cambios: [ ] Sí / [ ] No aplica
-- Issues del QA resueltos: [LISTA]
-```
-
----
-
-# 📖 Ejemplos Reales
-
-## Ejemplo: StudyAI — Error 429 de Gemini
-
-Este caso real muestra cómo BMAD hubiera evitado el problema desde el inicio.
-
----
-
-### 🔍 Analyst — Output Real
-
-```
-Problema real: El generador de módulos falla en producción por límites 
-               de rate del free tier de Gemini (429 errors).
-
-Restricciones identificadas:
-- Presupuesto: $0/mes (no negociable)
-- Frontend only: sin backend disponible
-- Usuarios simultáneos: 1-10
-- PDFs hasta 25MB como input
-
-Riesgos:
-- [CRITICAL] API key expuesta en código frontend → robo de clave
-- [HIGH] Rate limit de Gemini free: 15 RPM — se satura con 2 usuarios
-- [MEDIUM] PDFs escaneados no tienen texto extraíble
-
-Lo que ya se intentó:
-- Gemini 2.0 Flash con API key en frontend → 429 errors
-
-Métricas de éxito:
-- 0 errores 429 en producción con 10 usuarios simultáneos
-- Costo mensual: $0
-```
-
----
-
-### 📋 PM — Output Real
-
-```
-Objetivo: Generar módulos de estudio desde PDFs, gratis, sin errores de rate limit.
-
-Must Have:
-- [ ] Subir PDF y obtener módulos de estudio
-- [ ] 0 errores por rate limit con 10 usuarios
-- [ ] Costo $0/mes
-
-Out of Scope:
-- Backend propio
-- Autenticación de usuarios
-- Almacenamiento de PDFs
-
-Definition of Done:
-- 10 usuarios simultáneos generan módulos sin un solo 429
-- Costo en producción = $0
-```
-
----
-
-### 🏗️ Architect — Output Real
-
-```
-Stack elegido:
-- pdf.js → extrae texto del PDF en el browser (gratis, sin servidor)
-- Groq API (Llama 3.3 70B) → análisis de texto (gratis: 30RPM / 500K tokens/día)
-
-Descartado:
-- Gemini: free tier 15 RPM insuficiente para producción
-- OpenAI: requiere pago
-- Claude API directa: no gratuita para producción
-
-Decisión clave:
-- Extraer texto con pdf.js antes de enviar a la IA
-  → Reduce payload de MB a KB
-  → Elimina necesidad de soporte nativo de PDF en la API
-
-Plan de contingencia:
-- Si Groq cae → mostrar mensaje amigable + reintentar en 30 segundos
-- Si PDF no tiene texto → detectar y alertar al usuario
-```
-
----
-
-# ✅ Checklists Go / No-Go
-
-### Go/No-Go: Fase 1 → Fase 2
-
-```
-Antes de que el Developer escriba una línea de código:
-
-ANALYST
-[ ] Problema real documentado (no síntoma)
-[ ] Restricciones técnicas y de negocio identificadas
-[ ] Riesgos clasificados
-
-PM
-[ ] PRD completo con Must Have y criterios de aceptación
-[ ] Out of scope explícito
-[ ] Definition of Done acordado por el equipo
-
-ARCHITECT
-[ ] Stack definido con justificación
-[ ] Tecnologías descartadas documentadas
-[ ] Servicios externos con sus límites reales probados
-[ ] Reglas para el Developer documentadas
-
-RESULTADO: [ ] GO  [ ] NO-GO
-Motivo si NO-GO: _______________
-```
-
-### Go/No-Go: Fase 2 → Producción
-
-```
-Antes de cualquier deploy:
-
-DEVELOPER
-[ ] Todos los Must Have implementados
-[ ] BMAD-SESSION.md actualizado con decisiones
-
-QA
-[ ] Sin issues Critical o High abiertos
-[ ] Flujo end-to-end probado
-[ ] Servicios externos probados con sus límites reales
-[ ] Manejo de errores cubre los casos del Analyst
-
-RESULTADO: [ ] GO  [ ] NO-GO
-Motivo si NO-GO: _______________
-```
-
----
-
-# ⚠️ Errores Comunes
-
-| Error | Consecuencia Real | Solución BMAD |
-|-------|------------------|---------------|
-| Saltar al Developer sin Architect | Código que no escala, decisiones mal tomadas (ej: Gemini 429) | Checklist Go/No-Go obligatorio |
-| No documentar outputs | Perder contexto entre sesiones, repetir trabajo | Actualizar BMAD-SESSION.md al final de cada sesión |
-| Usar Developer para analizar | Soluciones sesgadas hacia lo técnico, ignoran restricciones de negocio | Separar roles estrictamente |
-| Ignorar QA porque "funciona en local" | Bugs en producción, regresiones | QA obligatorio antes de cada merge |
-| No invocar Orchestrator ante bloqueos | Ciclos interminables, decisiones sin documentar | Invocar Orchestrator ante cualquier bloqueo >30 min |
-| API key en frontend sin analizar | Robo de credenciales, costos inesperados | Analyst debe revisar seguridad en Fase 1 |
-
----
-
-# 📋 Plantillas
-
-## Plantilla: Inicio de Proyecto
-
-```markdown
-## BMAD SESSION — [NOMBRE DEL PROYECTO]
-Fecha inicio: [FECHA]
-Objetivo: [UNA LÍNEA]
-
-### ✅ Analyst — [FECHA]
-- Problema real:
-- Restricciones:
-- Riesgos:
-- Métricas de éxito:
-
-### ⬜ PM
-### ⬜ Architect
-### ⬜ Developer
-### ⬜ QA
-### ⬜ Deploy
-```
-
-## Plantilla: Reporte de Bug
-
-```markdown
-## 🚨 Bug Report — [FECHA]
-Reportado por: [AGENTE / USUARIO]
-Severidad: [ ] Critical  [ ] High  [ ] Medium  [ ] Low
-
-Error: 
-Pasos para reproducir:
-Impacto:
-
-### Analyst — Diagnóstico
-Causa raíz:
-
-### Architect — Revisión
-¿Requiere cambio de arquitectura?:
-
-### Developer — Fix
-Fix implementado:
-
-### QA — Verificación
-Estado: [ ] Aprobado  [ ] Rechazado
-```
-
----
-
-# 🔁 Regla de Oro
-
-> **Ningún agente avanza sin completar su entregable y pasar el Go/No-Go.**  
-> **El Orchestrator es el guardián de esta regla.**  
-> **El BMAD Session Document es la memoria del proyecto.**
-
----
-
-## 📁 Estructura de Archivos Recomendada
-
-```
-proyecto/
-├── BMAD-SESSION.md          ← Documento vivo del proyecto
-├── README.md                ← Documentación pública
-├── .cursor/
-│   └── rules/
-│       └── bmad.mdc         ← Reglas para Cursor
-├── .github/
-│   └── pull_request_template.md  ← Checklist en cada PR
-└── docs/
-    ├── analyst-output.md    ← Output del Analyst
-    ├── prd.md               ← PRD del PM
-    ├── architecture.md      ← Arquitectura del Architect
-    └── qa-reports/          ← Reportes de QA por fecha
-```
-
----
-
-*Documento mantenido bajo el método BMAD — Versión 1.0*  
-*Actualizar con cada decisión relevante del proyecto.*
+## Elige la ruta según el tamaño del trabajo
+
+### Cambio pequeño o bug
+
+1. `/bmad-build` con la descripción, el bug o el enlace a la historia.
+2. `/bmad-code-review` si el cambio toca algo delicado.
+
+### Funcionalidad en un proyecto existente
+
+1. `/bmad-project-context` una vez por repo, para que los agentes conozcan sus reglas (bloque en `AGENTS.md`).
+2. `/bmad-spec` para convertir tu idea o notas en un `SPEC.md` breve; pídele "divídelo en historias" si es grande.
+3. `/bmad-build` por historia.
+4. `/bmad-code-review`, y `/bmad-walkthrough` si quieres revisarlo tú paso a paso.
+
+### Producto nuevo
+
+1. Explorar: `/bmad-brainstorming`, `/bmad-forge-idea` o `/bmad-deep-recon` si necesitas investigar.
+2. `/bmad-product-brief` y luego `/bmad-prd`.
+3. `/bmad-ux` si tiene interfaz, y `/bmad-architecture`.
+4. `/bmad-create-epics-and-stories` y `/bmad-sprint-planning`.
+5. Por cada historia: `/bmad-build` y después `/bmad-code-review`.
+6. Al cerrar la épica: `/bmad-retrospective`.
+
+Si a mitad de sprint cambia algo grande, usa `/bmad-correct-course` antes de seguir construyendo.
+
+## Qué cambió frente a la guía anterior
+
+La versión anterior de esta guía describía seis agentes con un "Orchestrator". En BMAD 6.x eso ya no existe así:
+
+- Las **skills** son la unidad de trabajo; los agentes (Mary, John, Winston, Sally, Amelia, Murat…) son personas que puedes invocar para conversar, pero no hace falta pasar por ellos.
+- `bmad-build` reemplaza a `dev-story`, `quick-dev` y `create-story`.
+- `bmad-prd`, `bmad-architecture` y `bmad-review` agrupan lo que antes eran varias skills (crear, editar, validar).
+- Las skills antiguas siguen instaladas como **reemplazadas**: redirigen a la nueva. En esta guía aparecen con la esquina doblada.
+
+## Mantener la guía al día
+
+Desde esta carpeta, ejecuta `npm run sync`. Lee lo que tienes instalado (BMAD, skills, agentes, plugins, versión de Claude Code), consulta la última versión publicada de BMAD y regenera esta página y el `README.md`. Si la guía tiene más de 7 días, la barra superior te lo recuerda.
+
+Para actualizar BMAD en un proyecto: `npx bmad-method@latest install --directory <ruta> --action quick-update --yes`. Conserva tu configuración y tus personalizaciones. El cajón **Instalaciones** lista todos tus proyectos con BMAD y su versión.
+
+
+## Método BMAD
+
+| Código | Nombre | Comando |
+|---|---|---|
+| `PRD` | PRD | `/bmad-prd` |
+| `CU` | Diseño UX | `/bmad-ux` |
+| `BP` | Lluvia de ideas | `/bmad-brainstorming` |
+| `CB` | Product brief | `/bmad-product-brief` |
+| `WB` | PRFAQ (Working Backwards) | `/bmad-prfaq` |
+| `CA` | Arquitectura | `/bmad-architecture` |
+| `CE` | Épicas e historias | `/bmad-create-epics-and-stories` |
+| `SP` | Plan de sprint | `/bmad-sprint-planning` |
+| `BD` | Construir | `/bmad-build` |
+| `CR` | Revisión de código | `/bmad-code-review` |
+| `WT` | Recorrido del cambio | `/bmad-walkthrough` |
+| `QA` | Tests E2E | `/bmad-qa-generate-e2e-tests` |
+| `ER` | Retrospectiva | `/bmad-retrospective` |
+| `PC` | Contexto del proyecto | `/bmad-project-context` |
+| `SPC` | Spec | `/bmad-spec` |
+| `CC` | Corregir el rumbo | `/bmad-correct-course` |
+| `SS` | Plan de sprint | `/bmad-sprint-planning status` |
+| `BSP` | Lluvia de ideas | `/bmad-brainstorming` |
+| `PM` | Party mode | `/bmad-party-mode` |
+| `BH` | Qué hago ahora | `/bmad-help` |
+| `BC` | Personalizar BMAD | `/bmad-customize` |
+| `AE` | Elicitación avanzada | `/bmad-advanced-elicitation` |
+| `RV` | Revisión con lentes | `/bmad-review` |
+| `FI` | Forjar una idea | `/bmad-forge-idea` |
+| `RS` | Investigación | `/bmad-deep-recon` |
+
+## Pruebas (TEA)
+
+| Código | Nombre | Comando |
+|---|---|---|
+| `TMT` | Aprender testing | `/bmad-teach-me-testing` |
+| `TD` | Diseño de pruebas | `/bmad-testarch-test-design` |
+| `TF` | Framework de pruebas | `/bmad-testarch-framework` |
+| `CI` | Pipeline de calidad | `/bmad-testarch-ci` |
+| `AT` | ATDD | `/bmad-testarch-atdd` |
+| `TA` | Automatizar pruebas | `/bmad-testarch-automate` |
+| `RV` | Revisar pruebas | `/bmad-testarch-test-review` |
+| `NR` | Auditoría NFR | `/bmad-testarch-nfr` |
+| `TR` | Trazabilidad | `/bmad-testarch-trace` |
+
+## Creatividad (CIS)
+
+| Código | Nombre | Comando |
+|---|---|---|
+| `IS` | Estrategia de innovación | `/bmad-cis-innovation-strategy` |
+| `PS` | Resolución de problemas | `/bmad-cis-problem-solving` |
+| `DT` | Design thinking | `/bmad-cis-design-thinking` |
+| `BS` | Lluvia de ideas | `/bmad-brainstorming` |
+| `ST` | Storytelling | `/bmad-cis-storytelling` |
+
+## Agentes BMAD
+
+| Código | Nombre | Comando |
+|---|---|---|
+| `BMad Master` | BMad Master Executor, Knowledge Custodian, and Workflow Orchestrator | `/bmad-master` |
+| `Murat` | Master Test Architect and Quality Advisor | `/bmad-tea` |
+| `Mary` | Business Analyst | `/bmad-analyst` |
+| `Winston` | Architect | `/bmad-architect` |
+| `Amelia` | Developer Agent | `/bmad-dev` |
+| `John` | Product Manager | `/bmad-pm` |
+| `Quinn` | QA Engineer | `/bmad-qa` |
+| `Barry` | Quick Flow Solo Dev | `/bmad-quick-flow-solo-dev` |
+| `Bob` | Scrum Master | `/bmad-sm` |
+| `Paige` | Technical Writer | `/bmad-tech-writer` |
+| `Sally` | UX Designer | `/bmad-ux-designer` |
+| `Carson` | Elite Brainstorming Specialist | `/bmad-cis-agent-brainstorming-coach` |
+| `Dr. Quinn` | Master Problem Solver | `/bmad-cis-agent-creative-problem-solver` |
+| `Maya` | Design Thinking Maestro | `/bmad-cis-agent-design-thinking-coach` |
+| `Victor` | Disruptive Innovation Oracle | `/bmad-cis-agent-innovation-strategist` |
+| `Caravaggio` | Visual Communication + Presentation Expert | `/bmad-cis-agent-presentation-master` |
+| `Sophia` | Master Storyteller | `/bmad-cis-agent-storyteller` |
+
+## Reemplazadas
+
+| Código | Nombre | Comando |
+|---|---|---|
+| `checkpoint-preview` | bmad-checkpoint-preview (reemplazada por `bmad-walkthrough`) | `/bmad-walkthrough` |
+| `create-architecture` | bmad-create-architecture (reemplazada por `bmad-architecture`) | `/bmad-architecture` |
+| `create-prd` | bmad-create-prd (reemplazada por `bmad-prd`) | `/bmad-prd` |
+| `create-story` | bmad-create-story (reemplazada por `bmad-build`) | `/bmad-build` |
+| `dev-auto` | bmad-dev-auto (reemplazada por `bmad-build-auto`) | `/bmad-build-auto` |
+| `dev-story` | bmad-dev-story (reemplazada por `bmad-build`) | `/bmad-build` |
+| `document-project` | bmad-document-project (reemplazada por `bmad-project-context`) | `/bmad-project-context` |
+| `domain-research` | bmad-domain-research (reemplazada por `bmad-deep-recon`) | `/bmad-deep-recon` |
+| `edit-prd` | bmad-edit-prd (reemplazada por `bmad-prd`) | `/bmad-prd` |
+| `editorial-review` | bmad-editorial-review (reemplazada por `bmad-review`) | `/bmad-review` |
+| `editorial-review-prose` | bmad-editorial-review-prose (reemplazada por `bmad-review`) | `/bmad-review` |
+| `editorial-review-structure` | bmad-editorial-review-structure (reemplazada por `bmad-review`) | `/bmad-review` |
+| `generate-project-context` | bmad-generate-project-context (reemplazada por `bmad-project-context`) | `/bmad-project-context` |
+| `market-research` | bmad-market-research (reemplazada por `bmad-deep-recon`) | `/bmad-deep-recon` |
+| `quick-dev` | bmad-quick-dev (reemplazada por `bmad-build`) | `/bmad-build` |
+| `review-adversarial-general` | bmad-review-adversarial-general (reemplazada por `bmad-review`) | `/bmad-review` |
+| `review-edge-case-hunter` | bmad-review-edge-case-hunter (reemplazada por `bmad-review`) | `/bmad-review` |
+| `review-verification-gap` | bmad-review-verification-gap (reemplazada por `bmad-review`) | `/bmad-review` |
+| `sprint-status` | bmad-sprint-status (reemplazada por `bmad-sprint-planning`) | `/bmad-sprint-planning` |
+| `technical-research` | bmad-technical-research (reemplazada por `bmad-deep-recon`) | `/bmad-deep-recon` |
+| `validate-prd` | bmad-validate-prd (reemplazada por `bmad-prd`) | `/bmad-prd` |
+| `agent-analyst` | bmad-agent-analyst | `/bmad-agent-analyst` |
+| `agent-architect` | bmad-agent-architect | `/bmad-agent-architect` |
+| `agent-cis-brainstorming-coach` | bmad-agent-cis-brainstorming-coach | `/bmad-agent-cis-brainstorming-coach` |
+| `agent-cis-creative-problem-solver` | bmad-agent-cis-creative-problem-solver | `/bmad-agent-cis-creative-problem-solver` |
+| `agent-cis-design-thinking-coach` | bmad-agent-cis-design-thinking-coach | `/bmad-agent-cis-design-thinking-coach` |
+| `agent-cis-innovation-strategist` | bmad-agent-cis-innovation-strategist | `/bmad-agent-cis-innovation-strategist` |
+| `agent-cis-presentation-master` | bmad-agent-cis-presentation-master | `/bmad-agent-cis-presentation-master` |
+| `agent-cis-storyteller` | bmad-agent-cis-storyteller | `/bmad-agent-cis-storyteller` |
+| `agent-dev` | bmad-agent-dev | `/bmad-agent-dev` |
+| `agent-pm` | bmad-agent-pm | `/bmad-agent-pm` |
+| `agent-tea-tea` | bmad-agent-tea-tea | `/bmad-agent-tea-tea` |
+| `agent-ux-designer` | bmad-agent-ux-designer | `/bmad-agent-ux-designer` |
+| `build-auto` | Construir (desatendido) | `/bmad-build-auto` |
+
+## Skills de Claude
+
+| Código | Nombre | Comando |
+|---|---|---|
+| `find-skills` | find-skills | `/find-skills` |
+| `impeccable` | impeccable | `/impeccable` |
+| `ai-readiness` | postman:ai-readiness | `/postman:ai-readiness` |
+| `api-discovery` | postman:api-discovery | `/postman:api-discovery` |
+| `api-documentation` | postman:api-documentation | `/postman:api-documentation` |
+| `api-engineer` | postman:api-engineer | `/postman:api-engineer` |
+| `api-mocking` | postman:api-mocking | `/postman:api-mocking` |
+| `api-monitoring` | postman:api-monitoring | `/postman:api-monitoring` |
+| `api-simulation` | postman:api-simulation | `/postman:api-simulation` |
+| `api-testing` | postman:api-testing | `/postman:api-testing` |
+| `bootstrap` | postman:bootstrap | `/postman:bootstrap` |
+| `ci-integration` | postman:ci-integration | `/postman:ci-integration` |
+| `collection-schema-v3` | postman:collection-schema-v3 | `/postman:collection-schema-v3` |
+| `datasets` | postman:datasets | `/postman:datasets` |
+| `flows` | postman:flows | `/postman:flows` |
+| `performance-testing` | postman:performance-testing | `/postman:performance-testing` |
+| `postman-mcp-server` | postman:postman-mcp-server | `/postman:postman-mcp-server` |
+| `variables` | postman:variables | `/postman:variables` |
+| `webhook-testing` | postman:webhook-testing | `/postman:webhook-testing` |
+| `problem-analyst` | problem-analyst | `Usa el agente problem-analyst para …` |
+
+## Comandos de Claude Code
+
+| Código | Nombre | Comando |
+|---|---|---|
+| `/help` | Ayuda y lista de comandos | `/help` |
+| `/init` | Crear CLAUDE.md | `/init` |
+| `/clear` | Empezar de cero | `/clear` |
+| `/compact` | Compactar contexto | `/compact conserva las decisiones de arquitectura` |
+| `/memory` | Editar memoria | `/memory` |
+| `/model` | Cambiar modelo | `/model` |
+| `/config` | Configuración | `/config` |
+| `/permissions` | Permisos | `/permissions` |
+| `/agents` | Subagentes | `/agents` |
+| `/mcp` | Servidores MCP | `/mcp` |
+| `/hooks` | Hooks | `/hooks` |
+| `/resume` | Retomar sesión | `/resume` |
+| `Shift+Tab` | Cambiar de modo |  |
+| `Esc` | Interrumpir |  |
+| `Esc Esc` | Volver atrás |  |
+| `!` | Ejecutar en la terminal | `! git status` |
+| `@` | Mencionar un archivo | `@src/app/page.tsx` |
+| `/` | Invocar una skill | `/impeccable critique src/app` |
+| `/code-review` | Buscar bugs en el diff | `/code-review high --fix` |
+| `/simplify` | Simplificar el código cambiado | `/simplify` |
+| `/security-review` | Revisión de seguridad | `/security-review` |
+| `--add-dir` | --add-dir <directories...> | `claude --add-dir` |
+| `--agent` | --agent <agent> | `claude --agent` |
+| `--agents` | --agents <json-or-file> | `claude --agents` |
+| `--allow-dangerously-skip-permissions` | --allow-dangerously-skip-permissions | `claude --allow-dangerously-skip-permissions` |
+| `--allowedTools` | --allowedTools, --allowed-tools <tools...> | `claude --allowed-tools` |
+| `--append-system-prompt` | --append-system-prompt <prompt> | `claude --append-system-prompt` |
+| `--autocompact` | --autocompact <auto|tokens> | `claude --autocompact` |
+| `--ax-screen-reader` | --ax-screen-reader | `claude --ax-screen-reader` |
+| `--bg` | --bg, --background | `claude --background` |
+| `--bare` | --bare | `claude --bare` |
+| `--betas` | --betas <betas...> | `claude --betas` |
+| `--brief` | --brief | `claude --brief` |
+| `--chrome` | --chrome | `claude --chrome` |
+| `--cloud` | --cloud [description|session_id|url] | `claude --cloud` |
+| `-c` | -c, --continue | `claude --continue` |
+| `--dangerously-skip-permissions` | --dangerously-skip-permissions | `claude --dangerously-skip-permissions` |
+| `-d` | -d, --debug [filter] | `claude --debug` |
+| `--debug-file` | --debug-file <path> | `claude --debug-file` |
+| `--desktop` | --desktop | `claude --desktop` |
+| `--disable-slash-commands` | --disable-slash-commands | `claude --disable-slash-commands` |
+| `--disallowedTools` | --disallowedTools, --disallowed-tools <tools...> | `claude --disallowed-tools` |
+| `--effort` | --effort <level> | `claude --effort` |
+| `--environment` | --environment <environment_id> | `claude --environment` |
+| `--exclude-dynamic-system-prompt-sections` | --exclude-dynamic-system-prompt-sections | `claude --exclude-dynamic-system-prompt-sections` |
+| `--fallback-model` | --fallback-model <model> | `claude --fallback-model` |
+| `--file` | --file <specs...> | `claude --file` |
+| `--fork-session` | --fork-session | `claude --fork-session` |
+| `--forward-subagent-text` | --forward-subagent-text | `claude --forward-subagent-text` |
+| `--from-pr` | --from-pr [value] | `claude --from-pr` |
+| `-h` | -h, --help | `claude --help` |
+| `--ide` | --ide | `claude --ide` |
+| `--include-hook-events` | --include-hook-events | `claude --include-hook-events` |
+| `--include-partial-messages` | --include-partial-messages | `claude --include-partial-messages` |
+| `--input-format` | --input-format <format> | `claude --input-format` |
+| `--json-schema` | --json-schema <schema> | `claude --json-schema` |
+| `--max-budget-usd` | --max-budget-usd <amount> | `claude --max-budget-usd` |
+| `--mcp-config` | --mcp-config <configs...> | `claude --mcp-config` |
+| `--model` | --model <model> | `claude --model` |
+| `-n` | -n, --name <name> | `claude --name` |
+| `--no-chrome` | --no-chrome | `claude --no-chrome` |
+| `--no-session-persistence` | --no-session-persistence | `claude --no-session-persistence` |
+| `--output-format` | --output-format <format> | `claude --output-format` |
+| `--permission-mode` | --permission-mode <mode> | `claude --permission-mode` |
+| `--permission-prompts` | --permission-prompts <target> | `claude --permission-prompts` |
+| `--plugin-dir` | --plugin-dir <path> | `claude --plugin-dir` |
+| `--plugin-url` | --plugin-url <url> | `claude --plugin-url` |
+| `-p` | -p, --print | `claude --print` |
+| `--prompt-suggestions` | --prompt-suggestions [value] | `claude --prompt-suggestions` |
+| `--remote-control` | --remote-control [name] | `claude --remote-control` |
+| `--remote-control-session-name-prefix` | --remote-control-session-name-prefix <prefix> | `claude --remote-control-session-name-prefix` |
+| `--replay-user-messages` | --replay-user-messages | `claude --replay-user-messages` |
+| `--restricted` | --restricted | `claude --restricted` |
+| `-r` | -r, --resume [value] | `claude --resume` |
+| `--safe-mode` | --safe-mode | `claude --safe-mode` |
+| `--session-id` | --session-id <uuid> | `claude --session-id` |
+| `--setting-sources` | --setting-sources <sources> | `claude --setting-sources` |
+| `--settings` | --settings <file-or-json> | `claude --settings` |
+| `--strict-mcp-config` | --strict-mcp-config | `claude --strict-mcp-config` |
+| `--system-prompt` | --system-prompt <prompt> | `claude --system-prompt` |
+| `--system-prompt-snapshot` | --system-prompt-snapshot <on|off> | `claude --system-prompt-snapshot` |
+| `--teleport` | --teleport [session] | `claude --teleport` |
+| `--tmux` | --tmux | `claude --tmux` |
+| `--tools` | --tools <tools...> | `claude --tools` |
+| `--verbose` | --verbose | `claude --verbose` |
+| `-v` | -v, --version | `claude --version` |
+| `-w` | -w, --worktree [name] | `claude --worktree` |
+
+## Instalaciones
+
+| Código | Nombre | Comando |
+|---|---|---|
+| `6.12.4` | REPOSITORIOS (raíz) | `npx bmad-method@latest install --directory "D:\REPOSITORIOS" --action quick-update --yes` |

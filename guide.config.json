@@ -1,0 +1,5 @@
+{
+  "bmadProject": "../..",
+  "scanRoots": ["../../.."],
+  "scanDepth": 3
+}

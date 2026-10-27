@@ -1,0 +1,9 @@
+{
+  "name": "docs-bmad-method",
+  "private": true,
+  "type": "module",
+  "description": "Guía local de BMAD + Claude generada desde la instalación real",
+  "scripts": {
+    "sync": "node scripts/sync.mjs"
+  }
+}

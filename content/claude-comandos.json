@@ -1,0 +1,41 @@
+{
+  "_nota": "Escrito a mano: verifica con /help si algo no responde. Las opciones de línea de comandos se leen de 'claude --help' en cada sync.",
+  "grupos": [
+    {
+      "label": "Dentro de una sesión",
+      "fichas": [
+        { "call": "/help", "title": "Ayuda y lista de comandos", "desc": "Muestra los comandos disponibles en tu versión, incluidas tus skills.", "cmd": "/help" },
+        { "call": "/init", "title": "Crear CLAUDE.md", "desc": "Analiza el repo y escribe un CLAUDE.md con cómo compilar, probar y las convenciones. Hazlo una vez por proyecto.", "cmd": "/init" },
+        { "call": "/clear", "title": "Empezar de cero", "desc": "Limpia la conversación. Úsalo al cambiar de tarea para no arrastrar contexto viejo.", "cmd": "/clear" },
+        { "call": "/compact", "title": "Compactar contexto", "desc": "Resume la conversación para liberar espacio. Puedes indicar qué conservar.", "cmd": "/compact conserva las decisiones de arquitectura" },
+        { "call": "/memory", "title": "Editar memoria", "desc": "Abre los CLAUDE.md y la memoria persistente para revisar o corregir lo que Claude recuerda.", "cmd": "/memory" },
+        { "call": "/model", "title": "Cambiar modelo", "desc": "Elige el modelo de la sesión.", "cmd": "/model" },
+        { "call": "/config", "title": "Configuración", "desc": "Tema, modelo por defecto, modo de permisos y demás ajustes.", "cmd": "/config" },
+        { "call": "/permissions", "title": "Permisos", "desc": "Revisa y edita qué comandos y herramientas puede usar Claude sin preguntarte.", "cmd": "/permissions" },
+        { "call": "/agents", "title": "Subagentes", "desc": "Crea y administra subagentes (como problem-analyst) en ~/.claude/agents.", "cmd": "/agents" },
+        { "call": "/mcp", "title": "Servidores MCP", "desc": "Estado y autenticación de los servidores MCP conectados (Postman, Chrome…).", "cmd": "/mcp" },
+        { "call": "/hooks", "title": "Hooks", "desc": "Configura acciones automáticas antes o después de herramientas y al iniciar sesión.", "cmd": "/hooks" },
+        { "call": "/resume", "title": "Retomar sesión", "desc": "Elige una conversación anterior de este directorio para continuarla.", "cmd": "/resume" }
+      ]
+    },
+    {
+      "label": "Atajos de teclado y prefijos",
+      "fichas": [
+        { "call": "Shift+Tab", "title": "Cambiar de modo", "desc": "Alterna entre modos de permisos, incluido el modo plan (Claude planifica sin editar archivos)." },
+        { "call": "Esc", "title": "Interrumpir", "desc": "Detiene a Claude en medio de una respuesta sin perder la conversación." },
+        { "call": "Esc Esc", "title": "Volver atrás", "desc": "Abre el historial para retroceder a un mensaje anterior y reescribirlo." },
+        { "call": "!", "title": "Ejecutar en la terminal", "desc": "Un mensaje que empieza por ! se ejecuta como comando de shell y su salida queda en la conversación.", "cmd": "! git status" },
+        { "call": "@", "title": "Mencionar un archivo", "desc": "Escribe @ y el nombre para adjuntar un archivo o carpeta al mensaje.", "cmd": "@src/app/page.tsx" },
+        { "call": "/", "title": "Invocar una skill", "desc": "Cualquier skill instalada se invoca como comando: /bmad-help, /impeccable, /code-review.", "cmd": "/impeccable critique src/app" }
+      ]
+    },
+    {
+      "label": "Revisión y calidad",
+      "fichas": [
+        { "call": "/code-review", "title": "Buscar bugs en el diff", "desc": "Revisa los cambios actuales con un nivel de esfuerzo. --fix aplica las correcciones.", "cmd": "/code-review high --fix" },
+        { "call": "/simplify", "title": "Simplificar el código cambiado", "desc": "Busca duplicación y complejidad innecesaria en lo que cambiaste y lo limpia. No busca bugs.", "cmd": "/simplify" },
+        { "call": "/security-review", "title": "Revisión de seguridad", "desc": "Analiza los cambios pendientes de la rama en busca de vulnerabilidades.", "cmd": "/security-review" }
+      ]
+    }
+  ]
+}

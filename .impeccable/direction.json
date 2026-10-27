@@ -1,0 +1,89 @@
+{
+  "title": "Elige el mundo visual de tus guías",
+  "question": "La tirada asignó «Fichero de biblioteca». Quédate con él, toma una alternativa o pide otra tirada.",
+  "options": [
+    {
+      "id": "assigned", "kind": "assigned", "kicker": "THE ROLL",
+      "label": "Fichero de biblioteca",
+      "lineage": "Catálogos de fichas Library Bureau, guías de color con pestañas escalonadas",
+      "thesis": "Cada skill, fase y comando es una ficha catalográfica con su signatura (CP, CA, DS…); las fases son cajones y las guías de color con pestañas escalonadas son la navegación.",
+      "palette": ["#1d2a24", "#e9e4d6", "#c8553d", "#3f7d6e", "#d9a441"],
+      "materials": ["cartulina de ficha con perforación inferior", "guías de color con pestaña", "portaetiquetas de latón", "signatura mecanografiada"],
+      "viewport": "Barra lateral de guías con pestañas escalonadas (Fases 1–4, Siempre, Claude); a la derecha el título de la guía, banda de estado (BMAD 6.1.0 instalada · 6.12.4 publicada), buscador grande y la primera fila de fichas del cajón activo con signatura, nombre, comando copiable.",
+      "risk": "Si las fichas se renderizan como tarjetas genéricas con sombra, se pierde el mundo y queda un dashboard más.",
+      "raised": [
+        {"from": "operate-c-emission-line-rail", "raise": "El estado es forma, no color: ficha instalada = esquina sólida; desactualizada = esquina doblada; faltante = ficha con línea tachada."},
+        {"from": "operate-a-cutting-bench-select-rail", "raise": "Banderita donde lo dejaste: la guía recuerda la última ficha abierta y la marca al volver."},
+        {"from": "posters-covers-sleeves-yeye-pop-sleeve", "raise": "Cada guía es una edición con su color de cajón comprometido: BMAD en verde catálogo, Git en tierra roja."}
+      ]
+    },
+    {
+      "id": "model-pick", "kind": "pick", "kicker": "IMPECCABLE’S PICK",
+      "label": "Tabla periódica",
+      "lineage": "Láminas murales de la tabla periódica de aula",
+      "thesis": "Las skills BMAD como elementos: código de dos letras grande, número de secuencia, familia por color de fase.",
+      "palette": ["#f4f1ea", "#1c1c1c", "#e07a5f", "#3d5a80", "#81b29a"],
+      "materials": ["lámina impresa", "celdas en retícula"],
+      "viewport": "Retícula de celdas por fase con la leyenda de familias arriba y el buscador sobre la tabla.",
+      "risk": "Es la metáfora más obvia para 'catálogo de códigos' y no sirve igual de bien para la guía de Git, que no tiene códigos."
+    },
+    {
+      "id": "c1", "kind": "challenger", "catalogId": "operate-c-emission-line-rail", "verdict": "declined",
+      "label": "Riel de líneas de emisión",
+      "lineage": "Espectrogramas de vidrio",
+      "palette": ["#2a2b2e", "#e8e4da", "#f5c542"], "materials": ["continuo carbón", "líneas finas"],
+      "case": "Pierde en ambos ejes: navegar por ticks sobre un riel obliga a aprender la interfaz.",
+      "kept": "Estado expresado por forma, no por color."
+    },
+    {
+      "id": "c2", "kind": "challenger", "catalogId": "operate-a-cutting-bench-select-rail", "verdict": "declined",
+      "label": "Mesa de corte de película",
+      "lineage": "Copias de trabajo en mesa de montaje",
+      "palette": ["#000000", "#f26b1d", "#ffffff"], "materials": ["grano de película", "perforaciones"],
+      "case": "Pierde en ambos ejes: el naranja a un tercio de pantalla cansa en consulta prolongada.",
+      "kept": "Marcar dónde te quedaste."
+    },
+    {
+      "id": "c3", "kind": "challenger", "catalogId": "posters-covers-sleeves-yeye-pop-sleeve", "verdict": "declined",
+      "label": "Funda de disco yeyé",
+      "lineage": "Portadas pop francesas",
+      "palette": ["#f28c28", "#2bb3b1", "#ffffff"], "materials": ["fondo plano saturado"],
+      "case": "Pierde en ambos ejes: un conjunto cerrado de cuatro pistas no carga 60 skills.",
+      "kept": "Un color comprometido por edición."
+    },
+    {
+      "id": "c4", "kind": "challenger", "catalogId": "civic-bureau-prospectus-late-modern", "verdict": "declined",
+      "label": "Prospecto corporativo tardomoderno",
+      "lineage": "Folletos institucionales",
+      "palette": ["#f7f7fa", "#1b1547", "#6b5ce7"], "materials": ["cinta WebGL"],
+      "case": "Pierde en ambos ejes: es el look SaaS que quieres evitar.",
+      "kept": "Gastar el color en un solo elemento."
+    },
+    {
+      "id": "c5", "kind": "challenger", "catalogId": "textiles-weave-drape-fashion-industrial-quote-grammar", "verdict": "declined",
+      "label": "Gramática industrial entre comillas",
+      "lineage": "Streetwear industrial",
+      "palette": ["#ffffff", "#111111", "#ff6a13"], "materials": ["franjas de peligro"],
+      "case": "Pierde en ambos ejes: grita donde la guía debe dejar leer.",
+      "kept": "Nombrar las cosas literalmente."
+    },
+    {
+      "id": "c6", "kind": "challenger", "catalogId": "stagecraft-theater-lighting-cyclorama-dawn", "verdict": "declined",
+      "label": "Ciclorama al amanecer",
+      "lineage": "Iluminación teatral",
+      "palette": ["#050505", "#1f3fbf", "#e88fa5"], "materials": ["luz"],
+      "case": "Pierde en ambos ejes: atmósfera sin estructura de consulta.",
+      "kept": "Fases como bandas ordenadas."
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "canon": true,
+  "canonCard": {
+    "kind": "canon", "label": "El estándar de documentación",
+    "thesis": "Estilo Docusaurus/Mintlify: barra lateral, sans neutra, acento azul, modo oscuro.",
+    "palette": ["#ffffff", "#111827", "#2563eb"],
+    "materials": ["retícula limpia", "bloques de código"],
+    "viewport": "Barra lateral en árbol, contenido centrado, tabla de contenidos a la derecha.",
+    "risk": "Es exactamente el aspecto 'hecho con IA' que quieres evitar."
+  }
+}
