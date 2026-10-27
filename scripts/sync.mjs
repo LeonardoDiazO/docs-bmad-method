@@ -236,7 +236,8 @@ const human = NOW.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', y
 const html = render({
   edition: 'bmad', title: 'Guía BMAD + Claude', storeKey: 'guia-bmad', fontsDir: join(ROOT, 'assets/fonts'),
   generatedAt: NOW.toISOString(), generatedHuman: human, syncCmd: 'npm run sync', searchHintShort: 'Buscar skill o comando', searchHint: 'Buscar skill, código o comando (PRD, build, revisión…)', searchExample: 'PRD',
-  novedades: { tools, snapshot: { data: newsData, fetchedAt } },
+  syncOs: PLATFORM,
+  novedades: { raw: cfg.novedades, installed: installedOf, syncOs: PLATFORM, snapshot: { data: newsData, fetchedAt } },
   status: [
     { label: 'Inventario', value: `${human} · ${OS_NAME}`, state: 'ok' },
     { tool: 'bmad', label: 'BMAD', value: installed, state: latest && older(installed, latest) ? 'warn' : 'ok', hint: latest && older(installed, latest) ? `publicada ${latest}` : (latest ? 'al día' : 'sin conexión') },
@@ -257,7 +258,7 @@ const readme = [
   '## Novedades', '', '| Herramienta | Tuya | Última | Estado |', '|---|---|---|---|', ...newsLines, '',
   '## Cómo se mantiene al día', '',
   '- **Novedades** (BMAD, Claude Code): la página las consulta en vivo al abrirse, como mucho una vez por hora. Sin internet muestra la copia de la última sincronización.',
-  '- **Lo instalado** (versiones, skills, agentes, proyectos con BMAD): se lee al ejecutar `npm run sync`, o desde `guias/` con `actualizar-guias.cmd` (Windows) o `./actualizar-guias.sh` (macOS/Linux). La barra superior avisa si el inventario tiene más de 7 días.', '',
+  '- **Lo instalado** (versiones, skills, agentes, proyectos con BMAD): se lee al ejecutar `npm run sync`, o desde `guias/` con `actualizar-guias.cmd` (Windows) o `./actualizar-guias.sh` (macOS/Linux). La página detecta el sistema de quien la abre y muestra sus comandos; se puede cambiar a mano en la barra superior. La barra superior avisa si el inventario tiene más de 7 días.', '',
   '## Estructura', '',
   '| Ruta | Qué es | ¿Se edita? |', '|---|---|---|',
   '| `content/` | Textos escritos a mano: `empezar.md` (rutas de trabajo), `es.json` (títulos en español), `claude-comandos.json` | Sí |',

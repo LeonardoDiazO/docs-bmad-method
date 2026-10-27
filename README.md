@@ -12,7 +12,7 @@
 ## Cómo se mantiene al día
 
 - **Novedades** (BMAD, Claude Code): la página las consulta en vivo al abrirse, como mucho una vez por hora. Sin internet muestra la copia de la última sincronización.
-- **Lo instalado** (versiones, skills, agentes, proyectos con BMAD): se lee al ejecutar `npm run sync`, o desde `guias/` con `actualizar-guias.cmd` (Windows) o `./actualizar-guias.sh` (macOS/Linux). La barra superior avisa si el inventario tiene más de 7 días.
+- **Lo instalado** (versiones, skills, agentes, proyectos con BMAD): se lee al ejecutar `npm run sync`, o desde `guias/` con `actualizar-guias.cmd` (Windows) o `./actualizar-guias.sh` (macOS/Linux). La página detecta el sistema de quien la abre y muestra sus comandos; se puede cambiar a mano en la barra superior. La barra superior avisa si el inventario tiene más de 7 días.
 
 ## Estructura
 
