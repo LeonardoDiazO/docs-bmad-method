@@ -1,11 +1,12 @@
 // npm run sync: lee la instalación real (BMAD, skills y agentes de Claude, plugins, versión de Claude Code),
-// consulta la última versión publicada de BMAD y regenera index.html y README.md.
+// descarga las novedades de BMAD y Claude Code (copia de respaldo; la página las vuelve a consultar en vivo)
+// y regenera index.html y README.md.
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve, dirname, relative } from 'node:path';
 import { homedir } from 'node:os';
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { render, md, esc } from './fichero.mjs';
+import { render, md, esc, Novedades } from './lib/fichero.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const cfg = JSON.parse(readFileSync(join(ROOT, 'guide.config.json'), 'utf8'));
@@ -199,8 +200,18 @@ const updateCards = (outdated.length ? outdated : installs.slice(0, 1)).map(i =>
   id: 'actualizar-' + i.dir.replace(/[^a-z0-9]+/gi, '-').toLowerCase(), call: i.version, sub: outdated.length ? `→ ${latest}` : 'ejemplo', title: label(i.dir), desc: 'Actualiza conservando configuración y personalizaciones.', cmd: updateCmd(i.dir),
 }));
 
+// ---------- novedades (copia de respaldo; la página consulta en vivo al abrirse) ----------
+const installedOf = { bmad: installed, claude: claudeVersion };
+const PLATFORM = process.env.GUIA_PLATFORM || process.platform;
+const OS_NAME = { win32: 'Windows', darwin: 'macOS', linux: 'Linux' }[PLATFORM] || PLATFORM;
+const tools = cfg.novedades.map(t => Novedades.resolve(t, PLATFORM)).map(t => ({ ...t, installed: installedOf[t.id] || null }));
+const fetchedAt = NOW.toISOString();
+const newsData = await Novedades.fetchAll(tools, (u, o) => fetch(u, { ...o, signal: AbortSignal.timeout(15000) }));
+const newCount = Novedades.counts(tools, newsData);
+
 // ---------- página ----------
 const drawers = [
+  { id: 'novedades', label: 'Novedades', color: '#e3957a', type: 'novedades' },
   { id: 'empezar', label: 'Empezar', color: '#d6b162', type: 'sheet', html: md(read(join(ROOT, 'content/empezar.md'))) },
   { id: 'metodo', label: 'Método BMAD', short: 'Método', color: '#8fb39a', groups: order.filter(k => methodGroups[k]).map(k => ({ label: k, cards: methodGroups[k].map(helpCard) })),
     intro: md('El catálogo que usa `bmad-help`, en el orden en que se recorre. **Requerida** significa que el flujo completo la necesita; flecha izquierda = qué va antes, derecha = qué sigue.') },
@@ -219,16 +230,17 @@ const drawers = [
     intro: md('Los comandos de sesión están escritos a mano (compruébalos con `/help`); las opciones de línea de comandos se leen de `claude --help` en cada sincronización.') },
   { id: 'instalaciones', label: 'Instalaciones', color: '#e3957a', intro: installIntro + installTable, groups: [{ label: outdated.length ? 'Actualizar' : 'Comando de actualización', cards: updateCards }] },
 ];
-drawers.forEach(d => { d.count = d.id === 'instalaciones' ? installs.length : d.type === 'sheet' ? '' : (d.groups || [{ cards: d.cards }]).reduce((n, g) => n + g.cards.length, 0); });
+drawers.forEach(d => { d.count = d.id === 'novedades' ? (newCount ? `${newCount} ${newCount === 1 ? 'nueva' : 'nuevas'}` : 'al día') : d.id === 'instalaciones' ? installs.length : d.type === 'sheet' ? '' : (d.groups || [{ cards: d.cards }]).reduce((n, g) => n + g.cards.length, 0); });
 
 const human = NOW.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
 const html = render({
   edition: 'bmad', title: 'Guía BMAD + Claude', storeKey: 'guia-bmad', fontsDir: join(ROOT, 'assets/fonts'),
   generatedAt: NOW.toISOString(), generatedHuman: human, syncCmd: 'npm run sync', searchHintShort: 'Buscar skill o comando', searchHint: 'Buscar skill, código o comando (PRD, build, revisión…)', searchExample: 'PRD',
+  novedades: { tools, snapshot: { data: newsData, fetchedAt } },
   status: [
-    { label: 'Sincronizada', value: human, state: 'ok' },
-    { label: 'BMAD', value: installed, state: latest && older(installed, latest) ? 'warn' : 'ok', hint: latest && older(installed, latest) ? `publicada ${latest}` : (latest ? 'al día' : 'sin conexión') },
-    { label: 'Claude Code', value: claudeVersion || 'no encontrado', state: claudeVersion ? 'ok' : 'warn' },
+    { label: 'Inventario', value: `${human} · ${OS_NAME}`, state: 'ok' },
+    { tool: 'bmad', label: 'BMAD', value: installed, state: latest && older(installed, latest) ? 'warn' : 'ok', hint: latest && older(installed, latest) ? `publicada ${latest}` : (latest ? 'al día' : 'sin conexión') },
+    { tool: 'claude', label: 'Claude Code', value: claudeVersion || 'no encontrado', state: claudeVersion ? 'ok' : 'warn' },
     { label: 'uv', value: uv || 'falta', state: uv ? 'ok' : 'warn', hint: uv ? '' : 'bmad-build lo necesita' },
     { label: 'Proyectos', value: `${installs.length}`, state: outdated.length ? 'warn' : 'ok', hint: outdated.length ? `${outdated.length} desactualizados` : '' },
   ],
@@ -236,14 +248,28 @@ const html = render({
 });
 writeFileSync(join(ROOT, 'index.html'), html);
 
-// README de respaldo (se lee en VS Code o GitHub)
+// README generado: qué es, cómo se usa, estructura y el contenido en texto plano (se lee en VS Code o GitHub)
 const row = c => `| \`${c.call}\` | ${c.title}${c.state === 'deprecated' ? ` (reemplazada${c.forward ? ` por \`${c.forward}\`` : ''})` : c.state === 'missing' ? ' (no instalada)' : ''} | ${c.cmd ? `\`${c.cmd}\`` : ''} |`;
+const newsLines = tools.map(t => { const d = newsData[t.id] || {}; return `| ${t.label} | ${t.installed || '—'} | ${d.latest || 'sin conexión'} | ${d.latest && t.installed && Novedades.cmp(d.latest, t.installed) > 0 ? '**actualizar**' : 'al día'} |`; });
 const readme = [
   '# Guía BMAD + Claude', '',
-  `> Generado por \`npm run sync\` el ${human}. **Abre \`index.html\`** para la versión con buscador. Para cambiar textos edita \`content/\`, no este archivo.`, '',
-  `BMAD instalado: **${installed}**${latest ? ` · publicado: **${latest}**` : ''} · Claude Code: **${claudeVersion || '¿?'}** · Módulos: ${modules.map(m => `${m.name} ${m.version}`).join(', ')}`, '',
-  read(join(ROOT, 'content/empezar.md')).trim(), '',
-  ...drawers.filter(d => d.type !== 'sheet').flatMap(d => ['', `## ${d.label}`, '', '| Código | Nombre | Comando |', '|---|---|---|', ...(d.groups || [{ cards: d.cards }]).flatMap(g => g.cards.map(row))]),
+  `> **Abre \`index.html\`** (doble clic): buscador, copiar con un clic y novedades en vivo. Este README lo genera \`npm run sync\` (${human}); no lo edites a mano.`, '',
+  '## Novedades', '', '| Herramienta | Tuya | Última | Estado |', '|---|---|---|---|', ...newsLines, '',
+  '## Cómo se mantiene al día', '',
+  '- **Novedades** (BMAD, Claude Code): la página las consulta en vivo al abrirse, como mucho una vez por hora. Sin internet muestra la copia de la última sincronización.',
+  '- **Lo instalado** (versiones, skills, agentes, proyectos con BMAD): se lee al ejecutar `npm run sync`, o desde `guias/` con `actualizar-guias.cmd` (Windows) o `./actualizar-guias.sh` (macOS/Linux). La barra superior avisa si el inventario tiene más de 7 días.', '',
+  '## Estructura', '',
+  '| Ruta | Qué es | ¿Se edita? |', '|---|---|---|',
+  '| `content/` | Textos escritos a mano: `empezar.md` (rutas de trabajo), `es.json` (títulos en español), `claude-comandos.json` | Sí |',
+  '| `guide.config.json` | Proyecto BMAD de referencia, carpetas a escanear y fuentes de novedades | Sí |',
+  '| `scripts/sync.mjs` | Lee la instalación, descarga novedades y genera `index.html` y este README | Al cambiar qué se lee |',
+  '| `scripts/lib/` | Motor compartido con `docs-git-commands` (idéntico en ambos repos) | Copiar al otro repo si cambia |',
+  '| `assets/fonts/` | Tipografías OFL incrustadas en la página | No |',
+  '| `index.html`, `README.md` | Generados | No |',
+  '| `PRODUCT.md`, `DESIGN.md`, `.impeccable/` | Contexto de producto y sistema visual (skill impeccable) | Al rediseñar |', '',
+  `BMAD instalado: **${installed}** · Claude Code: **${claudeVersion || '¿?'}** · Módulos: ${modules.map(m => `${m.name} ${m.version}`).join(', ')}`, '',
+  read(join(ROOT, 'content/empezar.md')).replace(/^```ruta (.*)$/gm, '**$1**').replace(/^```$/gm, '').replace(/^(\/\S.*?) \| (.*)$/gm, '- `$1`: $2').trim(), '',
+  ...drawers.filter(d => d.groups || d.cards).flatMap(d => ['', `## ${d.label}`, '', '| Código | Nombre | Comando |', '|---|---|---|', ...(d.groups || [{ cards: d.cards }]).flatMap(g => g.cards.map(row))]),
   '',
 ].join('\n');
 writeFileSync(join(ROOT, 'README.md'), readme);

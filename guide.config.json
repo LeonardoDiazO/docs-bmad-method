@@ -1,5 +1,36 @@
 {
   "bmadProject": "../..",
-  "scanRoots": ["../../.."],
-  "scanDepth": 3
+  "scanRoots": [
+    "../../.."
+  ],
+  "scanDepth": 3,
+  "novedades": [
+    {
+      "id": "bmad",
+      "label": "BMAD Method",
+      "take": 4,
+      "source": {
+        "kind": "gh-releases",
+        "url": "https://api.github.com/repos/bmad-code-org/BMAD-METHOD/releases?per_page=8"
+      },
+      "update": {
+        "cmd": "npx bmad-method@latest install --directory . --action quick-update --yes",
+        "note": "Ejecútalo dentro de cada proyecto; el cajón **Instalaciones** trae el comando ya escrito con la ruta de cada uno."
+      },
+      "link": "https://github.com/bmad-code-org/BMAD-METHOD/releases"
+    },
+    {
+      "id": "claude",
+      "label": "Claude Code",
+      "take": 4,
+      "source": {
+        "kind": "md-changelog",
+        "url": "https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md",
+        "link": "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md"
+      },
+      "update": {
+        "cmd": "claude update"
+      }
+    }
+  ]
 }

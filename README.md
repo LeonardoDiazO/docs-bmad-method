@@ -1,8 +1,32 @@
 # Guía BMAD + Claude
 
-> Generado por `npm run sync` el 26 de octubre de 2026. **Abre `index.html`** para la versión con buscador. Para cambiar textos edita `content/`, no este archivo.
+> **Abre `index.html`** (doble clic): buscador, copiar con un clic y novedades en vivo. Este README lo genera `npm run sync` (26 de octubre de 2026); no lo edites a mano.
 
-BMAD instalado: **6.12.4** · publicado: **6.12.4** · Claude Code: **2.1.311** · Módulos: core 6.12.4, tea v1.27.2, bmm 6.12.4, cis v0.3.2
+## Novedades
+
+| Herramienta | Tuya | Última | Estado |
+|---|---|---|---|
+| BMAD Method | 6.12.4 | 6.12.4 | al día |
+| Claude Code | 2.1.311 | 2.1.311 | al día |
+
+## Cómo se mantiene al día
+
+- **Novedades** (BMAD, Claude Code): la página las consulta en vivo al abrirse, como mucho una vez por hora. Sin internet muestra la copia de la última sincronización.
+- **Lo instalado** (versiones, skills, agentes, proyectos con BMAD): se lee al ejecutar `npm run sync`, o desde `guias/` con `actualizar-guias.cmd` (Windows) o `./actualizar-guias.sh` (macOS/Linux). La barra superior avisa si el inventario tiene más de 7 días.
+
+## Estructura
+
+| Ruta | Qué es | ¿Se edita? |
+|---|---|---|
+| `content/` | Textos escritos a mano: `empezar.md` (rutas de trabajo), `es.json` (títulos en español), `claude-comandos.json` | Sí |
+| `guide.config.json` | Proyecto BMAD de referencia, carpetas a escanear y fuentes de novedades | Sí |
+| `scripts/sync.mjs` | Lee la instalación, descarga novedades y genera `index.html` y este README | Al cambiar qué se lee |
+| `scripts/lib/` | Motor compartido con `docs-git-commands` (idéntico en ambos repos) | Copiar al otro repo si cambia |
+| `assets/fonts/` | Tipografías OFL incrustadas en la página | No |
+| `index.html`, `README.md` | Generados | No |
+| `PRODUCT.md`, `DESIGN.md`, `.impeccable/` | Contexto de producto y sistema visual (skill impeccable) | Al rediseñar |
+
+BMAD instalado: **6.12.4** · Claude Code: **2.1.311** · Módulos: core 6.12.4, tea v1.27.2, bmm 6.12.4, cis v0.3.2
 
 ## Cómo se usa BMAD dentro de Claude Code
 
@@ -12,26 +36,30 @@ BMAD es un conjunto de **skills**: instrucciones empaquetadas que Claude carga c
 
 ## Elige la ruta según el tamaño del trabajo
 
-### Cambio pequeño o bug
+**Cambio pequeño o bug**
+- `/bmad-build`: Pega la descripción, el bug o el enlace a la historia.
+- `/bmad-code-review`: Si el cambio toca algo delicado.
 
-1. `/bmad-build` con la descripción, el bug o el enlace a la historia.
-2. `/bmad-code-review` si el cambio toca algo delicado.
 
-### Funcionalidad en un proyecto existente
+**Funcionalidad en un proyecto existente**
+- `/bmad-project-context`: Una vez por repo, para que los agentes conozcan sus reglas (bloque en `AGENTS.md`).
+- `/bmad-spec`: Convierte tu idea o notas en un `SPEC.md` breve. Si es grande, pídele "divídelo en historias".
+- `/bmad-build`: Una vez por historia.
+- `/bmad-code-review`: Revisión con varios revisores en paralelo.
+- `/bmad-walkthrough`: Si quieres revisar el cambio tú mismo, paso a paso.
 
-1. `/bmad-project-context` una vez por repo, para que los agentes conozcan sus reglas (bloque en `AGENTS.md`).
-2. `/bmad-spec` para convertir tu idea o notas en un `SPEC.md` breve; pídele "divídelo en historias" si es grande.
-3. `/bmad-build` por historia.
-4. `/bmad-code-review`, y `/bmad-walkthrough` si quieres revisarlo tú paso a paso.
 
-### Producto nuevo
+**Producto nuevo**
+- `/bmad-brainstorming`: Explorar la idea. Alternativas: `/bmad-forge-idea` para ponerla a prueba, `/bmad-deep-recon` para investigar.
+- `/bmad-product-brief`: Problema, usuarios, propuesta y alcance.
+- `/bmad-prd`: Requisitos del producto.
+- `/bmad-ux`: Si tiene interfaz.
+- `/bmad-architecture`: Decisiones técnicas.
+- `/bmad-create-epics-and-stories`: Divide el trabajo en épicas e historias.
+- `/bmad-sprint-planning`: Genera el estado del sprint.
+- `/bmad-build`: Por cada historia, seguido de `/bmad-code-review`.
+- `/bmad-retrospective`: Al cerrar cada épica.
 
-1. Explorar: `/bmad-brainstorming`, `/bmad-forge-idea` o `/bmad-deep-recon` si necesitas investigar.
-2. `/bmad-product-brief` y luego `/bmad-prd`.
-3. `/bmad-ux` si tiene interfaz, y `/bmad-architecture`.
-4. `/bmad-create-epics-and-stories` y `/bmad-sprint-planning`.
-5. Por cada historia: `/bmad-build` y después `/bmad-code-review`.
-6. Al cerrar la épica: `/bmad-retrospective`.
 
 Si a mitad de sprint cambia algo grande, usa `/bmad-correct-course` antes de seguir construyendo.
 
@@ -48,7 +76,7 @@ La versión anterior de esta guía describía seis agentes con un "Orchestrator"
 
 Desde esta carpeta, ejecuta `npm run sync`. Lee lo que tienes instalado (BMAD, skills, agentes, plugins, versión de Claude Code), consulta la última versión publicada de BMAD y regenera esta página y el `README.md`. Si la guía tiene más de 7 días, la barra superior te lo recuerda.
 
-Para actualizar BMAD en un proyecto: `npx bmad-method@latest install --directory <ruta> --action quick-update --yes`. Conserva tu configuración y tus personalizaciones. El cajón **Instalaciones** lista todos tus proyectos con BMAD y su versión.
+Para actualizar BMAD en un proyecto, ejecuta desde su carpeta `npx bmad-method@latest install --directory . --action quick-update --yes` (en el cajón **Instalaciones** cada proyecto trae el comando ya escrito con su ruta). Conserva tu configuración y tus personalizaciones. El cajón **Instalaciones** lista todos tus proyectos con BMAD y su versión.
 
 
 ## Método BMAD
